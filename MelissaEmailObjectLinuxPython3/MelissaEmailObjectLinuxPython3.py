@@ -33,7 +33,7 @@ class EmailObject:
         print(f"              Expiration Date: {self.md_email_obj.GetLicenseStringExpirationDate()}")
       
         """
-        This number should match with file properties of the Melissa Data Object binary file.
+        This number should match with file properties of the Melissa Object binary file.
         If TEST appears with the build number, there may be a license key issue.
         """
         print(f"               Object Version: {self.md_email_obj.GetBuildNumber()}\n")
@@ -52,8 +52,8 @@ class EmailObject:
         result_codes = self.md_email_obj.GetResults()
 
         """ 
-        ResultsCodes explain any issues email object has with the object.
-        List of result codes for Email object
+        ResultsCodes explain any issues Email Object has with the object.
+        List of result codes for Email Object
         https://wiki.melissadata.com/?title=Result_Code_Details#Email_Object
         """
 
@@ -81,7 +81,7 @@ def parse_arguments():
     return (license, test_email, data_path)
 
 def run_as_console(license, test_email, data_path):
-    print("\n\n===== WELCOME TO MELISSA DATA EMAIL OBJECT LINUX PYTHON3 SAMPLE =====\n")
+    print("\n\n=========== WELCOME TO MELISSA EMAIL OBJECT LINUX PYTHON3 ===========\n")
 
     email_object = EmailObject(license, data_path)
 
@@ -145,7 +145,7 @@ def run_as_console(license, test_email, data_path):
             
               print("Invalid Response, please respond 'Y' or 'N'")
 
-    print("\n=========== THANK YOU FOR USING MELISSA DATA PYTHON3 OBJECT =========\n")
+    print("\n============== THANK YOU FOR USING MELISSA PYTHON3 OBJECT ===========\n")
     
 
 

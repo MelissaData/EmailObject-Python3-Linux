@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Name:    MelissaDataEmailObjectLinuxPython3
-# Purpose: Use the Melissa Updater to make the MelissaDataEmailObjectLinuxPython3 sample usable
+# Name:    MelissaEmailObjectLinuxPython3
+# Purpose: Use the Melissa Updater to make the MelissaEmailObjectLinuxPython3 code usable
 
 ######################### Constants ##########################
 
@@ -16,7 +16,7 @@ quiet="false"
 
 while [ $# -gt 0 ] ; do
   case $1 in
-    -p | --email) 
+    -e | --email) 
         email="$2"
         
         if [ "$email" == "-l" ] || [ "$email" == "--license" ] || [ "$email" == "-q" ] || [ "$email" == "--quiet" ] || [ -z "$email" ];
@@ -48,7 +48,7 @@ ProductName="DQ_EMAIL_DATA"
 # Uses the location of the .sh file 
 # Modify this if you want to use 
 CurrentPath=$(pwd)
-ProjectPath="$CurrentPath/MelissaDataEmailObjectLinuxPython3Sample"
+ProjectPath="$CurrentPath/MelissaEmailObjectLinuxPython3"
 BuildPath="$ProjectPath"
 DataPath="$ProjectPath/Data"
 if [ ! -d $DataPath ];
@@ -122,7 +122,7 @@ CheckSOs()
 }
 
 ########################## Main ############################
-printf "\n================ Sample of Melissa Data Email Object ================\n                    [ Python3 | Linux | 64BIT ]\n"
+printf "\n======================== Melissa Email Object =======================\n                    [ Python3 | Linux | 64BIT ]\n"
 
 # Get license (either from parameters or user input)
 if [ -z "$license" ];
@@ -175,14 +175,11 @@ fi
 
 printf "\nAll file(s) have been downloaded/updated!\n"
 
-# Start sample
-# Build project
-printf "\n=========================== BUILD PROJECT ===========================\n"
-
+# Start
 # Run project
 if [ -z "$email" ];
 then
-    python3 $BuildPath/MelissaDataEmailObjectLinuxPython3Sample.py --license $license  --dataPath $DataPath
+    python3 $BuildPath/MelissaEmailObjectLinuxPython3.py --license $license  --dataPath $DataPath
 else
-    python3 $BuildPath/MelissaDataEmailObjectLinuxPython3Sample.py --license $license  --dataPath $DataPath --email "$email"
+    python3 $BuildPath/MelissaEmailObjectLinuxPython3.py --license $license  --dataPath $DataPath --email "$email"
 fi

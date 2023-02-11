@@ -6,15 +6,11 @@ import os
 
 dir = os.getcwd()
 
-#lib = ctypes.CDLL('libmdEmail.so')
-#lib = ctypes.CDLL(f'{dir}\libmdEmail.so')
-#lib = ctypes.CDLL(f'{dir}/MelissaDataEmailObjectWindowsPython3Sample/mdEmail.dll')
-
 
 if (os.name == 'nt'):
-  lib = ctypes.CDLL(f'{dir}/MelissaDataEmailObjectWindowsPython3Sample/mdEmail.dll')
+  lib = ctypes.CDLL(f'{dir}/MelissaEmailObjectWindowsPython3/mdEmail.dll')
 else:
-  lib = ctypes.CDLL(f'{dir}/MelissaDataEmailObjectLinuxPython3Sample/libmdEmail.so')
+  lib = ctypes.CDLL(f'{dir}/MelissaEmailObjectLinuxPython3/libmdEmail.so')
 
 lib.mdEmailCreate.argtypes = []
 lib.mdEmailCreate.restype = c_void_p
