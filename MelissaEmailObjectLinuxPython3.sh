@@ -11,30 +11,40 @@ NC='\033[0m' # No Color
 ######################### Parameters ##########################
 
 email=""
+dataPath=""
 license=""
 quiet="false"
 
 while [ $# -gt 0 ] ; do
   case $1 in
-    -e | --email) 
+    --email) 
         email="$2"
         
-        if [ "$email" == "-l" ] || [ "$email" == "--license" ] || [ "$email" == "-q" ] || [ "$email" == "--quiet" ] || [ -z "$email" ];
+        if [ "$email" == "--dataPath" ] || [ "$email" == "--license" ] || [ "$email" == "--quiet" ] || [ -z "$email" ];
         then
             printf "${RED}Error: Missing an argument for parameter \'email\'.${NC}\n"  
             exit 1
         fi 
         ;;
-    -l | --license) 
+    --dataPath) 
+        dataPath="$2"
+        
+        if [ "$dataPath" == "--email" ] || [ "$dataPath" == "--license" ] || [ "$dataPath" == "--quiet" ] || [ -z "$dataPath" ];
+        then
+            printf "${RED}Error: Missing an argument for parameter \'dataPath\'.${NC}\n"  
+            exit 1
+        fi 
+        ;;
+    --license) 
         license="$2"
         
-        if [ "$license" == "-q" ] || [ "$license" == "--quiet" ] || [ "$license" == "-p" ] || [ "$license" == "--email" ] || [ -z "$license" ];
+        if [ "$license" == "--quiet" ] || [ "$license" == "--email" ] || [ "$license" == "--dataPath" ] || [ -z "$license" ];
         then
             printf "${RED}Error: Missing an argument for parameter \'license\'.${NC}\n"  
             exit 1
         fi  
         ;;
-    -q | --quiet) 
+    --quiet) 
         quiet="true" 
         ;;
   esac
@@ -42,17 +52,28 @@ while [ $# -gt 0 ] ; do
 done
 
 # ######################### Config ###########################
-RELEASE_VERSION='2024.03'
+RELEASE_VERSION='2024.04'
 ProductName="DQ_EMAIL_DATA"
 
 # Uses the location of the .sh file 
 CurrentPath=$(pwd)
 ProjectPath="$CurrentPath/MelissaEmailObjectLinuxPython3"
 
-DataPath="$ProjectPath/Data" # To use your own data file(s), change to your DQS release data file(s) directory
-if [ ! -d "$DataPath" ] && [ "$DataPath" = "$ProjectPath/Data" ]; 
+if [ -z "$dataPath" ];
 then
-  mkdir -p "$DataPath"
+    DataPath="$ProjectPath/Data"
+else
+    DataPath=$dataPath
+fi
+
+if [ ! -d "$DataPath" ] && [ "$DataPath" == "$ProjectPath/Data" ];
+then
+    mkdir "$DataPath"
+elif [ ! -d "$DataPath" ] && [ "$DataPath" != "$ProjectPath/Data" ];
+then
+    printf "\nData file path does not exist. Please check that your file path is correct.\n"
+    printf "\nAborting program, see above.\n"
+    exit 1
 fi
 
 # Config variables for download file(s)
@@ -167,6 +188,22 @@ if [ -z "$license" ];
 then
   printf "\nLicense String is invalid!\n"
   exit 1
+fi
+
+# Get data file path (either from parameters or user input)
+if [ "$DataPath" = "$ProjectPath/Data" ]; then
+    printf "Please enter your data files path directory if you have already downloaded the release zip.\nOtherwise, the data files will be downloaded using the Melissa Updater (Enter to skip): "
+    read dataPathInput
+
+    if [ ! -z "$dataPathInput" ]; then  
+        if [ ! -d "$dataPathInput" ]; then  
+            printf "\nData file path does not exist. Please check that your file path is correct.\n"
+            printf "\nAborting program, see above.\n"
+            exit 1
+        else
+            DataPath=$dataPathInput
+        fi
+    fi
 fi
 
 # Use Melissa Updater to download data file(s) 
