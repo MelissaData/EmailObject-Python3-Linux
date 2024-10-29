@@ -23,7 +23,7 @@ And return
 
 ## Tested Environments
 - Linux 64-bit Python 3.8.7, Ubuntu 20.04.05 LTS
-- Melissa data files for 2024-09
+- Melissa data files for 2024-10
 
 ## Required File(s) and Programs
 
@@ -57,8 +57,8 @@ If you see the version number then you have installed Python3 and set up your en
 
 #### Download this project
 ```
-$ git clone https://github.com/MelissaData/EmailObject-Python3-Linux
-$ cd EmailObject-Python3-Linux
+git clone https://github.com/MelissaData/EmailObject-Python3-Linux
+cd EmailObject-Python3-Linux
 ```
 
 #### Set up Melissa Updater 
@@ -122,26 +122,26 @@ Parameters:
 
 - Interactive 
 
-	The script will prompt the user for an email address, then use the provided email to test Email Object. For example:
-	```
-	$ ./MelissaEmailObjectLinuxPython3.sh
-	```
-    For quiet mode:
-    ```
-    $ ./MelissaEmailObjectLinuxPython3.sh -quiet
-    ```
+  The script will prompt the user for an email address, then use the provided email to test Email Object. For example:
+  ```
+  ./MelissaEmailObjectLinuxPython3.sh
+  ```
+  For quiet mode:
+  ```
+  ./MelissaEmailObjectLinuxPython3.sh -quiet
+  ```
 - Command Line 
 
-	You can pass an email in ```--email``` parameter and a license string in ```--license``` parameter to test Email Object. For example:
-	```
-    $ ./MelissaEmailObjectLinuxPython3.sh --email "info@melissa.com" 
-    $ ./MelissaEmailObjectLinuxPython3.sh --email "info@melissa.com" --license "<your_license_string>"
-    ```
-	For quiet mode:
-    ```
-    $ ./MelissaEmailObjectLinuxPython3.sh --email "info@melissa.com" --quiet
-    $ ./MelissaEmailObjectLinuxPython3.sh --email "info@melissa.com" --license "<your_license_string>" --quiet
-    ```
+  You can pass an email in ```--email``` parameter and a license string in ```--license``` parameter to test Email Object. For example:
+  ```
+  ./MelissaEmailObjectLinuxPython3.sh --email "info@melissa.com" 
+  ./MelissaEmailObjectLinuxPython3.sh --email "info@melissa.com" --license "<your_license_string>"
+  ```
+  For quiet mode:
+  ```
+  ./MelissaEmailObjectLinuxPython3.sh --email "info@melissa.com" --quiet
+  ./MelissaEmailObjectLinuxPython3.sh --email "info@melissa.com" --license "<your_license_string>" --quiet
+  ```
 This is the expected output from a successful setup for interactive mode:
 
 ![alt text](/screenshots/output.png)
